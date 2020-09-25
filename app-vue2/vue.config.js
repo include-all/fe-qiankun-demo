@@ -3,6 +3,7 @@ const { name } = require('./package.json')
 
 module.exports = {
   lintOnSave: false,
+  publicPath: '/subapp/app-vue2',
   configureWebpack: {
     output: {
       library: `${name}-[name]`,
