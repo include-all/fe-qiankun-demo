@@ -1,23 +1,28 @@
 <template>
   <div id="layout-wrapper">
-    <div class="header">
-      <div class="container">
-        <h1>qiankun-demo</h1>
+    <div class="layout-side-bar">
+      <div class="logo-title">
+        qiankun
       </div>
+      <el-menu
+        :collapse="isCollapse"
+        default-active="app-vue2"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+      >
+        <el-menu-item
+          v-for="item in microApps"
+          :key="item.name"
+          :index="item.name"
+          :title="item.title"
+          @click="goto(item)"
+          >{{ item.title }}
+        </el-menu-item>
+      </el-menu>
     </div>
     <div class="layout-content">
-      <div class="side-bar">
-        <el-menu default-active="app-vue2">
-          <el-menu-item
-            v-for="item in microApps"
-            :key="item.name"
-            :index="item.name"
-            :title="item.title"
-            @click="goto(item)"
-            >{{ item.title }}
-          </el-menu-item>
-        </el-menu>
-      </div>
+      <div class="header"></div>
       <div id="sub-app-root"></div>
     </div>
   </div>
@@ -30,6 +35,7 @@ export default {
   data() {
     return {
       microApps,
+      isCollapse: false,
     };
   },
   methods: {
@@ -41,8 +47,12 @@ export default {
 </script>
 
 <style lang="less">
+html {
+  height: 100%;
+}
 body {
   margin: 0;
+  height: 100%;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -55,35 +65,40 @@ body {
 
 <style lang="less" scoped>
 #layout-wrapper {
-  .header {
-    height: 80px;
-    background-color: #fff;
-    width: 100%;
-    line-height: 80px;
-    z-index: 100;
-    .container {
-      height: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  .layout-side-bar {
+    height: 100%;
+    width: 200px;
+    height: 100%;
+    .logo-title {
+      width: 199px;
+      height: 80px;
       box-sizing: border-box;
-      border-bottom: 1px solid #dcdfe6;
-      h1 {
-        margin: 0;
-        float: left;
-        font-size: 32px;
-        font-weight: 400;
-      }
+      border-bottom: 1px solid #b0b1b5;
+      line-height: 80px;
+      text-align: center;
+      font-size: 30px;
+      background-color: #545c64;
+      color: #fff;
+    }
+    /deep/ .el-menu {
+      height: 100%;
     }
   }
   .layout-content {
-    display: flex;
-    justify-content: flex-start;
-    .side-bar {
-      width: 200px;
-      /deep/ .el-menu {
-        height: 100%;
-      }
+    flex: 1;
+    .header {
+      height: 80px;
+      background-color: #fff;
+      width: 100%;
+      line-height: 80px;
+      z-index: 100;
+      box-sizing: border-box;
+      border-bottom: 1px solid #dcdfe6;
     }
     #sub-app-root {
-      flex: 1;
     }
   }
 }
