@@ -22,7 +22,7 @@
       </el-menu>
     </div>
     <div class="layout-content">
-      <div class="header">test webkooks1</div>
+      <div class="header">test webkooks</div>
       <div id="sub-app-root"></div>
     </div>
   </div>
